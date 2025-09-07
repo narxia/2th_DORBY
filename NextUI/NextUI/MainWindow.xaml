@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:NextUI"
         mc:Ignorable="d"
          xmlns:vm="clr-namespace:NextUI.ViewModels"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1080" Width="1280">
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
-    <Border CornerRadius="10,10,10,10" Background="AliceBlue" Padding="10">
+    <Border CornerRadius="10,10,10,10" Background="{StaticResource BackgroundMainBrush}" Padding="10">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
@@ -22,13 +22,27 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="NextUI"/>
             <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
-                <Button Content="File" Style="{StaticResource SideMenuButton}"/>
-                <Button Content="New" Style="{StaticResource SideMenuButtonSub}"/>
-                <Button Content="Open" Style="{StaticResource SideMenuButtonSub}"/>
-                <Button Content="Save" Style="{StaticResource SideMenuButtonSub}"/>
-                <Button Content="Exit" Style="{StaticResource SideMenuButton}"/>
-                <Button Content="Home"  Command="{Binding ShowHomeCommand}" />
-                <Button Content="Settings"  Command="{Binding ShowSettingsCommand}" />
+                <RadioButton Content="HOME" Style="{StaticResource SidebarRadioMainMenuStyle}" GroupName="Main" Command="{Binding HomeShowCommand}" />
+                <RadioButton Content="MACHINE" x:Name="btnSystem" Style="{StaticResource SidebarRadioMainMenuStyle}" GroupName="Main"/>
+                <RadioButton Content="MANUAL OPERATION" Style="{StaticResource SystemSubButton}" GroupName="Sub"/>
+                <RadioButton Content="MOTOR" Style="{StaticResource SystemSubButton}" GroupName="Sub"/>
+                <RadioButton Content="I/O SENSOR" Style="{StaticResource SystemSubButton}" GroupName="Sub" Command="{Binding IOShowCommand}"/>
+                <RadioButton Content="ANALOG SENSOR" Style="{StaticResource SystemSubButton}" GroupName="Sub"/>
+                <RadioButton Content="MOTOR" Style="{StaticResource SystemSubButton}" GroupName="Sub"/>
+                <RadioButton Content="ALARM" Style="{StaticResource SystemSubButton}" GroupName="Sub"/>
+                <RadioButton Content="RECIPE" x:Name="btnRecipe" IsChecked="False" Style="{StaticResource SidebarRadioMainMenuStyle}" GroupName="Main"/>
+                <RadioButton Content="CHANGE" Style="{StaticResource RecipeSubButton}" GroupName="Sub"/>
+                <RadioButton Content="MANAGE" Style="{StaticResource RecipeSubButton}" GroupName="Sub"/>
+                <RadioButton Content="HISTORY"  x:Name="btnHistory" Style="{StaticResource SidebarRadioMainMenuStyle}" GroupName="Main"/>
+                <RadioButton Content="LOT" Style="{StaticResource HistorySubButton}" GroupName="Sub"/>
+                <RadioButton Content="ALARM" Style="{StaticResource HistorySubButton}" GroupName="Sub"/>
+                <RadioButton Content="COMMUNICATION" x:Name="btnCommunication" Style="{StaticResource SidebarRadioMainMenuStyle}" GroupName="Main"/>
+                <RadioButton Content="VISION" Style="{StaticResource CommunicationSubButton}" GroupName="Sub"/>
+                <RadioButton Content="SECS/GEM" Style="{StaticResource CommunicationSubButton}" GroupName="Sub"/>
+                <RadioButton Content="BARCODE" Style="{StaticResource CommunicationSubButton}" GroupName="Sub"/>
+                <RadioButton Content="RFID" Style="{StaticResource CommunicationSubButton}" GroupName="Sub"/>
+                <RadioButton Content="ACCOUNT" x:Name="btnAccount" Style="{StaticResource SidebarRadioMainMenuStyle}" GroupName="Main"/>
+
             </StackPanel>
             <ContentControl Grid.Row="1" Grid.Column="1" Content="{Binding CurrentView}" />
         </Grid>
